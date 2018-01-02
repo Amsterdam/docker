@@ -6,7 +6,6 @@ services:
 
   postgres:
     build: postgres
-    image: build.datapunt.amsterdam.nl:5000/atlas/postgres:latest
     volumes:
       - "~/.ssh/datapunt.key:/root/.ssh/datapunt.key"
 
