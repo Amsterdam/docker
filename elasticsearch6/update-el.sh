@@ -7,6 +7,7 @@ DATATYPE=$1
 INDICES=${@:2}
 TEMPDIR=/tmp/${DATATYPE}
 ELFILE=$1.gz
+# USERNAME='should be given'
 
 # Create dir's, clean, download, extract and set rights
 mkdir -p ${TEMPDIR}

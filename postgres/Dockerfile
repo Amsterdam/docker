@@ -10,6 +10,7 @@ RUN echo 'work_mem = 6GB' >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sa
 RUN echo 'maintenance_work_mem = 3GB' >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
 RUN echo 'checkpoint_completion_target = 0.9' >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
 RUN echo 'fsync = off' >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
+RUN echo 'synchronous_commit = off' >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
 RUN echo 'full_page_writes = off' >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
 
 RUN mkdir ~/.ssh
