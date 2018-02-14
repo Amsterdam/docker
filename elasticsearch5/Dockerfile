@@ -1,4 +1,4 @@
-FROM elasticsearch:5.6.3
+FROM elasticsearch:5
 MAINTAINER datapunt@amsterdam.nl
 
 COPY elasticsearch.yml /usr/share/elasticsearch/config/
