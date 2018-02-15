@@ -36,9 +36,10 @@ docker-compose run postgres update-db.sh <database> <username>
 of
 
 ```
-docker-compose run elasticsearch5|elasticsearch update-el.sh <indexnaam> <username>
+docker-compose run elasticsearch5|elasticsearch6 update-el.sh <indexnaam> <username>
 ```
 
+*LET OP:* de mogelijkheid meerdere index-namen mee te geven is komen te vervallen.
 
 Bijvoorbeeld:
 
@@ -46,25 +47,25 @@ Bijvoorbeeld:
 docker-compose run postgres update-db.sh basiskaart szaat
 ```
 
-afvalophaalgebieden
-bag
-basiskaart
-bbga
-catalogus
-handelsregister
-ibprojecten
-metadata
-milieuthemas
-monumenten
-nap
-overlastgebieden
-panorama
-parkeervakken
-predictiveparking
-reistijdenauto
-sportparken
-tellus
-zorg
+- afvalophaalgebieden
+- bag
+- basiskaart
+- bbga
+- catalogus
+- handelsregister
+- ibprojecten
+- metadata
+- milieuthemas
+- monumenten
+- nap
+- overlastgebieden
+- panorama
+- parkeervakken
+- predictiveparking
+- reistijdenauto
+- sportparken
+- tellus
+- zorg
 
 
 ```
@@ -72,10 +73,10 @@ docker-compose run elasticsearch5 update-el.sh bag szaat
 ```
 
 Opties:
-bag
-ds_bag_index
-ds_hr_index
-handelsregister
-meetbouten
-scans
+- bag
+- ds_bag_index
+- ds_hr_index
+- handelsregister
+- meetbouten
+- scans
 

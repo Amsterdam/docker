@@ -13,9 +13,12 @@ mkdir -p ${TEMPDIR}
 rm -Rf ${TEMPDIR}/*
 
 cd ${TEMPDIR}
-if [ ! -v LOCAL ]; then
+
+if [ $# -eq 1 ]; then
+    echo "User parameter not found: Using download for internal imports"
     wget -nc https://${ADMIN_HOST}/elastic/${ELFILE}
 else
+    echo "User parameter found: Using download for developers"
     scp -i ~/.ssh/datapunt.key $2@${ADMIN_HOST}:/mnt/elastic-acc/${ELFILE} .
 fi
 
