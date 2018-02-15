@@ -4,7 +4,6 @@ set -eu
 # Do some variables
 ADMIN_HOST=admin.datapunt.amsterdam.nl
 DATATYPE=$1
-INDICES=${@:2}
 TEMPDIR=/tmp/${DATATYPE}
 ELFILE=$1.gz
 
@@ -36,11 +35,7 @@ done
 # Try removing stale snapshot definitions and delete existing indices. Do not fail when they do no exist (yet)
 set +e
 curl -s -v -f -XDELETE http://localhost:9200/_snapshot/${DATATYPE} || true
-
-for indx in ${INDICES}
-do
-    curl -s -v -f -XDELETE http://localhost:9200/${indx}/ || true
-done
+curl -s -v -f -XDELETE http://localhost:9200/${DATATYPE}/ || true
 set -e
 
 # Register backup location as a snapshot repo with ES
