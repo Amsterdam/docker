@@ -15,7 +15,7 @@ rm -Rf ${TEMPDIR}/*
 
 cd ${TEMPDIR}
 if [ ! -v LOCAL ]; then
-    wget -nc https://${ADMIN_HOST}/${ELFILE}
+    wget -nc https://${ADMIN_HOST}/elastic/${ELFILE}
 else
     scp -i ~/.ssh/datapunt.key $2@${ADMIN_HOST}:/mnt/elastic-acc/${ELFILE} .
 fi
