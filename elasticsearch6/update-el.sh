@@ -25,12 +25,11 @@ tar xzvf ${ELFILE}
 chown -R elasticsearch:elasticsearch ${TEMPDIR}
 
 # Wait for Elastic to come up
-while ! nc -z localhost 9200
+while ! curl --output /dev/null --silent --head --fail http://localhost:9200/
 do
         printf "Waiting for elasticsearch...\n"
         sleep 0.5
 done
-
 
 # Try removing stale snapshot definitions and delete existing indices. Do not fail when they do no exist (yet)
 set +e
