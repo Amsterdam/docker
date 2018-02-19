@@ -38,7 +38,14 @@ curl -s -v -f -XDELETE http://localhost:9200/${DATATYPE}/ || true
 set -e
 
 # Register backup location as a snapshot repo with ES
-curl -s -v -f -XPUT http://localhost:9200/_snapshot/${DATATYPE} -d "{ \"type\": \"fs\", \"settings\": { \"location\": \"\/tmp\/$DATATYPE\" }}"
+curl -XPUT 'localhost:9200/_snapshot/${DATATYPE}?pretty' -H 'Content-Type: application/json' -d'
+{
+  "type": "fs",
+  "settings": {
+    "location": "/tmp/${DATATYPE}/"
+  }
+}
+'
 
 # Restore the snapshot from the newly defined repo
 printf "\nRestoring Elastic\n\n"
@@ -47,7 +54,7 @@ printf "\n\nFinished Elastic Restore\n\n"
 sleep 1
 
 #Give ES some time to finish. Even though we already waited for completion it still does some housekeeping in the background
-curl -XGET http://localhost:9200/_cluster/health?wait_for_status=yellow\&wait_for_no_relocating_shards=true\&wait_for_no_initializing_shards=true\&pretty\&timeout=320s
+curl -XGET http://localhost:9200/_cluster/health?wait_for_status=yellow\&wait_for_no_relocating_shards=true\&&wait_for_no_initializing_shards=true\&pretty\&timeout=320s
 
 printf "\nCleaning up\n"
 # Remove the snapshot repo from ES
