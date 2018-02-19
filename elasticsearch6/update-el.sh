@@ -47,14 +47,16 @@ curl -XPUT 'localhost:9200/_snapshot/${DATATYPE}?pretty' -H 'Content-Type: appli
 }
 '
 
+sleep 2
+
 # Restore the snapshot from the newly defined repo
 printf "\nRestoring Elastic\n\n"
 curl -s -v -f -XPOST http://localhost:9200/_snapshot/${DATATYPE}/${DATATYPE}/_restore\?pretty&wait_for_completion=true
 printf "\n\nFinished Elastic Restore\n\n"
-sleep 1
+sleep 2
 
 #Give ES some time to finish. Even though we already waited for completion it still does some housekeeping in the background
-curl -XGET http://localhost:9200/_cluster/health?wait_for_status=yellow\&wait_for_no_relocating_shards=true\&&wait_for_no_initializing_shards=true\&pretty\&timeout=320s
+curl -XGET http://localhost:9200/_cluster/health?wait_for_status=yellow\&wait_for_no_relocating_shards=true\&wait_for_no_initializing_shards=true\&pretty\&timeout=320s
 
 printf "\nCleaning up\n"
 # Remove the snapshot repo from ES

@@ -48,7 +48,7 @@ printf "\n\nFinished Elastic Restore\n\n"
 sleep 1
 
 #Give ES some time to finish. Even though we already waited for completion it still does some housekeeping in the background
-curl -XGET http://localhost:9200/_cluster/health?wait_for_status=yellow\&wait_for_no_relocating_shards=true\&&wait_for_no_initializing_shards=true\&pretty\&timeout=320s
+curl -XGET http://localhost:9200/_cluster/health?wait_for_status=yellow\&wait_for_no_relocating_shards=true\&wait_for_no_initializing_shards=true\&pretty\&timeout=320s
 
 printf "\nCleaning up\n"
 # Remove the snapshot repo from ES
