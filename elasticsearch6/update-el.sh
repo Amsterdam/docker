@@ -33,30 +33,31 @@ done
 
 # Try removing stale snapshot definitions and delete existing indices. Do not fail when they do no exist (yet)
 set +e
-curl -s -v -f -XDELETE http://localhost:9200/_snapshot/${DATATYPE} || true
-curl -s -v -f -XDELETE http://localhost:9200/${DATATYPE}/ || true
+curl -s -v -f -XDELETE "http://localhost:9200/_snapshot/${DATATYPE}" || true
+curl -s -v -f -XDELETE "http://localhost:9200/${DATATYPE}/" || true
 set -e
 
 # Register backup location as a snapshot repo with ES
-curl -XPUT 'localhost:9200/_snapshot/${DATATYPE}?pretty' -H 'Content-Type: application/json' -d'
+curl -XPUT "http://localhost:9200/_snapshot/${DATATYPE}?pretty" -H 'Content-Type: application/json' -d"
 {
-  "type": "fs",
-  "settings": {
-    "location": "/tmp/${DATATYPE}/"
+  \"type\": \"fs\",
+  \"settings\": {
+    \"location\": \"/tmp/${DATATYPE}/\"
   }
 }
-'
-
+"
 sleep 2
 
 # Restore the snapshot from the newly defined repo
 printf "\nRestoring Elastic\n\n"
-curl -s -v -f -XPOST http://localhost:9200/_snapshot/${DATATYPE}/${DATATYPE}/_restore\?pretty&wait_for_completion=true
+
+curl -XPOST "http://localhost:9200/_snapshot/${DATATYPE}/${DATATYPE}/_restore?pretty&wait_for_completion=true"
+
 printf "\n\nFinished Elastic Restore\n\n"
 sleep 2
 
 #Give ES some time to finish. Even though we already waited for completion it still does some housekeeping in the background
-curl -XGET http://localhost:9200/_cluster/health?wait_for_status=yellow\&wait_for_no_relocating_shards=true\&wait_for_no_initializing_shards=true\&pretty\&timeout=320s
+curl -XGET http://localhost:9200/_cluster/health?wait_for_status=yellow\&wait_for_no_relocating_shards=true\&pretty\&timeout=320s
 
 printf "\nCleaning up\n"
 # Remove the snapshot repo from ES
