@@ -31,10 +31,9 @@ do
         sleep 0.5
 done
 
-# Try removing stale snapshot definitions and delete existing indices. Do not fail when they do no exist (yet)
+# Try removing stale snapshot definitions. Do not fail when they do no exist (yet)
 set +e
 curl -s -v -f -XDELETE "http://localhost:9200/_snapshot/${DATATYPE}" || true
-curl -s -v -f -XDELETE "http://localhost:9200/${DATATYPE}/" || true
 set -e
 
 # Register backup location as a snapshot repo with ES

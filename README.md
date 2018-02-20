@@ -39,7 +39,16 @@ of
 docker-compose run elasticsearch5|elasticsearch6 update-el.sh <indexnaam> <username>
 ```
 
-*LET OP:* de mogelijkheid meerdere index-namen mee te geven is komen te vervallen.
+**LET OP:** mocht je elastic dockers hergebruiken dan moet je nu apart je indices opruimen:
+
+```
+docker-compose run elasticsearch5|elasticsearch6 clean-el.sh
+docker-compose run elasticsearch5|elasticsearch6 update-el.sh <indexnaam> <username>
+```
+
+*LET OOK OP: de mogelijkheid meerdere index-namen mee te geven is komen te vervallen.*
+
+---
 
 Bijvoorbeeld:
 
