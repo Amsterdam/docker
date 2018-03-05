@@ -1,4 +1,4 @@
-FROM postgres:9.5.12
+FROM postgres:9.5.11
 
 RUN apt-get update \
 	&& apt-get install -y postgresql-9.5-postgis-scripts openssh-client wget \
