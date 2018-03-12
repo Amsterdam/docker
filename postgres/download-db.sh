@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -eu
+set -x
 
 cd /tmp
 rm -f $1
