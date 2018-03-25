@@ -1,7 +1,7 @@
-FROM postgres:9.5
+FROM postgres:10
 
 RUN apt-get update \
-	&& apt-get install -y postgresql-9.5-postgis-scripts openssh-client wget \
+	&& apt-get install -y postgresql-10-postgis-scripts openssh-client wget \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN echo 'max_wal_size = 2GB' >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
