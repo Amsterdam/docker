@@ -20,13 +20,13 @@ createuser -U postgres $4 || echo "Could not create $4, continuing"
 
 SECONDS=0
 
-pg_restore -U postgres -c --no-owner --table=$2 --schema=$3 /tmp/$1_latest.gz > $2_table.pg
+pg_restore -U postgres -c --if-exists --no-owner --table=$2 --schema=$3 /tmp/$1_latest.gz > $2_table.pg
 
 echo "CREATE SCHEMA IF NOT EXISTS $3;" | psql -U postgres -d $4
 
 echo "Extracting table $2 into $4"
 # Download table
-psql -U postgres $4 < $2_table.pg
+psql -v ON_ERROR_STOP=1 -U postgres $4 < $2_table.pg
 
 
 echo "Finished pg_restore $1 table $2 into $4"
