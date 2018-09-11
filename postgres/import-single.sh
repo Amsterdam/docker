@@ -11,11 +11,13 @@ else
     echo "Too many arguments or incorrect parameters. Please see the README for proper usage.";
 fi
 
-createuser -U postgres $1 || echo "Could not create $1, continuing"
-createuser -U postgres $1_read || echo "Could not create $1, continuing"
-createuser -U postgres basiskaart_read || echo "Could not create basiskaart_read, continuing"
+POSTGRES_USER=${POSTGRES_USER-postgres}
+
+createuser -U $POSTGRES_USER $1 || echo "Could not create $1, continuing"
+createuser -U $POSTGRES_USER $1_read || echo "Could not create $1, continuing"
+createuser -U $POSTGRES_USER basiskaart_read || echo "Could not create basiskaart_read, continuing"
 SECONDS=0
-pg_restore --single-transaction -j 1 -d $1 -U postgres /tmp/$1_latest.gz
+pg_restore --single-transaction -j 1 -d $1 -U $POSTGRES_USER /tmp/$1_latest.gz
 
 echo "Finished pg_restore $1"
 duration=$SECONDS

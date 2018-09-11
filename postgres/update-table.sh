@@ -16,17 +16,19 @@ else
     echo "Too many arguments or incorrect parameters. Please see the README for proper usage.";
 fi
 
-createuser -U postgres $4 || echo "Could not create $4, continuing"
+POSTGRES_USER=${POSTGRES_USER-postgres}
+
+createuser -U POSTGRES_USER $4 || echo "Could not create $4, continuing"
 
 SECONDS=0
 
-pg_restore -U postgres -c --if-exists --no-owner --table=$2 --schema=$3 /tmp/$1_latest.gz > $2_table.pg
+pg_restore -U $POSTGRES_USER -c --if-exists --no-owner --table=$2 --schema=$3 /tmp/$1_latest.gz > $2_table.pg
 
-echo "CREATE SCHEMA IF NOT EXISTS $3;" | psql -U postgres -d $4
+echo "CREATE SCHEMA IF NOT EXISTS $3;" | psql -U POSTGRES_USER -d $4
 
 echo "Extracting table $2 into $4"
 # Download table
-psql -v ON_ERROR_STOP=1 -U postgres $4 < $2_table.pg
+psql -v ON_ERROR_STOP=1 -U $POSTGRES_USER $4 < $2_table.pg
 
 
 echo "Finished pg_restore $1 table $2 into $4"
