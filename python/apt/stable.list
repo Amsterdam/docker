@@ -1,4 +1,4 @@
 deb     http://ftp.nl.debian.org/debian/    stable main contrib non-free
 deb-src http://ftp.nl.debian.org/debian/    stable main contrib non-free
-deb     http://ftp.nluug.nl/pub/os/Linux/distr/debian/    stable main contrib non-free
-deb-src http://ftp.nluug.nl/pub/os/Linux/distr/debian/    stable main contrib non-free
+#deb     http://ftp.nluug.nl/pub/os/Linux/distr/debian/    stable main contrib non-free
+#deb-src http://ftp.nluug.nl/pub/os/Linux/distr/debian/    stable main contrib non-free
