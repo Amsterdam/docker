@@ -1,11 +1,10 @@
 FROM python:3.6.2-stretch
 
-MAINTAINER datapunt.ois@amsterdam.nl
+MAINTAINER datapunt@amsterdam.nl
 
 ENV PYTHONUNBUFFERED 1
 
 COPY apt/stable.pref /etc/apt/preferences.d/
-COPY apt/stable.list /etc/apt/sources.list.d/
 
 WORKDIR /app
 RUN apt-get update \
