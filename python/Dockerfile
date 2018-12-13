@@ -5,6 +5,7 @@ MAINTAINER datapunt@amsterdam.nl
 ENV PYTHONUNBUFFERED 1
 
 COPY apt/stable.pref /etc/apt/preferences.d/
+COPY apt/stable.list /etc/apt/preferences.d/
 
 WORKDIR /app
 RUN apt-get update \
