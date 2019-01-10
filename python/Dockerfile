@@ -28,6 +28,11 @@ RUN apt-get update \
  && pip install --upgrade pip \
  && pip install uwsgi
 
+RUN mkdir /usr/local/share/ca-certificates/extras
+COPY adp_rootca.crt /usr/local/share/ca-certificates/extras/
+RUN chmod 644 /usr/local/share/ca-certificates/extras/adp_rootca.crt
+RUN update-ca-certificates
+
 RUN adduser --system datapunt
 
 RUN uwsgi --build-plugin https://github.com/unbit/uwsgi-consul
