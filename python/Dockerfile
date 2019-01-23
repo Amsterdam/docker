@@ -1,4 +1,4 @@
-FROM python:3.6.2-stretch
+FROM python:3.6.7-stretch
 
 MAINTAINER datapunt@amsterdam.nl
 
