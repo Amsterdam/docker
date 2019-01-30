@@ -17,7 +17,7 @@ RUN apt-get update \
         vim \
         net-tools \
         netcat \
-      	postgresql-client-10.5 \
+	postgresql-client-9.6 \
         libgeos-dev \
         gdal-bin \
         libgdal20 \
