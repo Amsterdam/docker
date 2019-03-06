@@ -17,21 +17,21 @@ RUN apt-get update \
 
 # build GEOS
 WORKDIR /temp
-RUN mkdir geos
+RUN git clone https://git.osgeo.org/gitea/geos/geos.git
 
 WORKDIR /temp/geos
-RUN svn checkout -q https://svn.osgeo.org/geos/tags/3.6.1/
+RUN git checkout 3.6.1
 
-WORKDIR /temp/geos/3.6.1
+WORKDIR /temp/geos
 RUN ./autogen.sh
 
-WORKDIR /temp/geos/3.6.1
+WORKDIR /temp/geos
 RUN ./configure
 
-WORKDIR /temp/geos/3.6.1
+WORKDIR /temp/geos
 RUN make -j 4
 
-WORKDIR /temp/geos/3.6.1
+WORKDIR /temp/geos
 RUN make install
 
 RUN rm -rf /temp/geos
