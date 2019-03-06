@@ -1,4 +1,4 @@
-FROM python:3.6.7-stretch
+FROM python:3.7.2-stretch
 
 MAINTAINER datapunt@amsterdam.nl
 
@@ -8,8 +8,11 @@ COPY apt/stable.pref /etc/apt/preferences.d/
 COPY apt/stable.list /etc/apt/preferences.d/
 
 WORKDIR /app
-RUN apt-get update \
-&&  apt-get install -y \
+RUN apt-get update
+RUN apt-get upgrade
+RUN apt-get autoremove
+
+RUN apt-get install -y \
         sudo \
         unzip \
         wget \
@@ -17,9 +20,9 @@ RUN apt-get update \
         vim \
         net-tools \
         netcat \
-	postgresql-client-9.6 \
         libgeos-dev \
         gdal-bin \
+	postgresql-client-9.6 \
         libgdal20 \
         libspatialite7 \
         libfreexl1 \
@@ -27,6 +30,7 @@ RUN apt-get update \
         proj-bin \
  && pip install --upgrade pip \
  && pip install uwsgi
+
 
 RUN mkdir /usr/local/share/ca-certificates/extras
 COPY adp_rootca.crt /usr/local/share/ca-certificates/extras/

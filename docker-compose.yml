@@ -25,6 +25,11 @@ services:
     volumes:
       - "~/.ssh/datapunt.key:/root/.ssh/datapunt.key"
 
+  postgres9.6:
+    build: postgres9.6
+    volumes:
+      - "~/.ssh/datapunt.key:/root/.ssh/datapunt.key"
+
   python:
     build: python
 
