@@ -9,8 +9,8 @@ COPY apt/stable.list /etc/apt/preferences.d/
 
 WORKDIR /app
 RUN apt-get update
-RUN apt-get upgrade
-RUN apt-get autoremove
+RUN apt-get upgrade -y
+RUN apt-get autoremove -y
 
 RUN apt-get install -y \
         sudo \
