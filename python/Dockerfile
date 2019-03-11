@@ -38,5 +38,3 @@ RUN chmod 644 /usr/local/share/ca-certificates/extras/adp_rootca.crt
 RUN update-ca-certificates
 
 RUN adduser --system datapunt
-
-RUN uwsgi --build-plugin https://github.com/unbit/uwsgi-consul
