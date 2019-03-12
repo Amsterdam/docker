@@ -41,7 +41,7 @@ WORKDIR /temp
 RUN git clone https://github.com/OSGeo/gdal.git
 
 WORKDIR /temp/gdal
-RUN git checkout tags/2.1.3
+RUN git checkout tags/v2.1.3
 
 WORKDIR /temp/gdal/gdal
 RUN ./configure
