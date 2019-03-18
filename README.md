@@ -14,7 +14,7 @@ Voor import processen op de datapunt infra:
 Geef in de .jenkins_import/docker-compose.yml de volgende environment parameter mee:
 
     extra_hosts:
-      admin.datapunt.amsterdam.nl: 10.99.157.24
+      ## ADMIN SERVER HOSTNAME ##: ## ADMIN SERVER IP ##
 
 Dit zorgt er voor dat de importer binnen de eigen infra de download van de laatste backup kan doen.
 Doe je dit niet, dan weet de importer binnen docker niet waar de admin.datapunt.amsterdam.nl server staat.

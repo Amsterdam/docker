@@ -14,7 +14,7 @@ RUN echo 'synchronous_commit = off' >> "/usr/share/postgresql/$PG_MAJOR/postgres
 RUN echo 'full_page_writes = off' >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
 
 RUN mkdir ~/.ssh
-RUN ssh-keyscan admin.datapunt.amsterdam.nl >> ~/.ssh/known_hosts
+RUN ssh-keyscan admin.data.amsterdam.nl >> ~/.ssh/known_hosts
 
 COPY *.sh /bin/
 COPY *.sql /docker-entrypoint-initdb.d/
