@@ -22,7 +22,7 @@ createuser -U $POSTGRES_USER $4 || echo "Could not create $4, continuing"
 
 SECONDS=0
 
-pg_restore -U $POSTGRES_USER -c --if-exists --no-owner --table=$2 --schema=$3 /tmp/$1_latest.gz > $2_table.pg
+pg_restore -U $POSTGRES_USER -c --if-exists --no-acl --table=$2 --schema=$3 /tmp/$1_latest.gz > $2_table.pg
 
 echo "CREATE SCHEMA IF NOT EXISTS $3;" | psql -U $POSTGRES_USER -d $4
 
