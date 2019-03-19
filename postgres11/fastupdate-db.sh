@@ -33,7 +33,7 @@ echo "2/2 Importing table definitions and data only"
 for import_table in $TABLES_TO_IMPORT
 do
     echo " - import data to $import_table"
-    pg_restore -U $POSTGRES_USER -c --if-exists --no-acl --table=$import_table --schema=public /tmp/$1_latest.gz > ${import_table}_table.pg
+    pg_restore -U $POSTGRES_USER -c --if-exists --no-acl --no-owner --table=$import_table --schema=public /tmp/$1_latest.gz > ${import_table}_table.pg
     psql -U $POSTGRES_USER $1 < ${import_table}_table.pg
     rm -f ${import_table}_table.pg
 done
