@@ -15,6 +15,9 @@ services:
       - "9200:9200"
       - "9300:9300"
 
+  nginx_proxy:
+    build: nginx_objectstore_proxy
+
   postgres:
     build: postgres
     volumes:
