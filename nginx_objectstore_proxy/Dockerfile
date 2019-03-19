@@ -1,6 +1,6 @@
 FROM alpine:3.9
 
-LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
+LABEL maintainer="Datapunt Amsterdam <datapunt@amsterdam.nl>"
 
 ENV NGINX_VERSION 1.14.2
 ENV PATCH_FILE patch/proxy_connect_rewrite_1014.patch
