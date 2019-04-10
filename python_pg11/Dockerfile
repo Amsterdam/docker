@@ -14,6 +14,7 @@ RUN apt-get autoremove -y
 
 RUN apt-get install -y \
         sudo \
+        curl \
         unzip \
         wget \
         dnsutils \
@@ -36,7 +37,7 @@ ENV PG_VERSION 11
 
 # old libs are installed by default, remove them
 RUN apt-get remove -y libpq-dev libpq5 && apt-get autoremove -y 
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+RUN curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
     echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main $PG_VERSION" > /etc/apt/sources.list.d/pgdg.list && \
     apt-get update && apt-get upgrade -y && apt-get install -y pgdg-keyring 
 
