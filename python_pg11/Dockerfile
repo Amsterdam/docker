@@ -12,9 +12,19 @@ RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get autoremove -y
 
+ENV PG_VERSION 11
+# old libs are installed by default, remove them
+RUN apt-get remove -y libpq-dev libpq5 && apt-get autoremove -y && apt-get install -y lsb-release curl
+RUN curl --insecure https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+    echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main $PG_VERSION" > /etc/apt/sources.list.d/pgdg.list && \
+    apt-get update
+
+RUN apt-get install -y pgdg-keyring postgresql-client-$PG_VERSION libpq-dev=11.2-1.pgdg90+1 libpq5=11.2-1.pgdg90+1 postgresql-client-common=199.pgdg90+1
+# libpq5=11.2-1.pgdg90+1 postgresql-client-common=199.pgdg90+1
+# incase of errors use aptitude aptitude --full-resolver postgresql-client-11 to find the correct packages
+
 RUN apt-get install -y \
         sudo \
-        curl \
         unzip \
         wget \
         dnsutils \
@@ -28,21 +38,10 @@ RUN apt-get install -y \
         libfreexl1 \
         libgeotiff2 \
         proj-bin \
-        lsb-release \
-        ca-certificates \
  && pip install --upgrade pip \
  && pip install uwsgi
 
-ENV PG_VERSION 11
 
-# old libs are installed by default, remove them
-RUN apt-get remove -y libpq-dev libpq5 && apt-get autoremove -y 
-RUN curl --insecure https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
-    echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main $PG_VERSION" > /etc/apt/sources.list.d/pgdg.list && \
-    apt-get update && apt-get upgrade -y && apt-get install -y pgdg-keyring 
-
-RUN apt-get install -f -y postgresql-client-$PG_VERSION libpq5=11.2-1.pgdg90+1 postgresql-client-common=199.pgdg90+1
-# incase of errors use aptitude aptitude --full-resolver postgresql-client-11 to find the correct packages
 
 
 RUN mkdir /usr/local/share/ca-certificates/extras
