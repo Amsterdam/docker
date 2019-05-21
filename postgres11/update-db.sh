@@ -12,6 +12,7 @@ fi
 POSTGRES_USER=${POSTGRES_USER-postgres}
 
 dropdb --if-exists -U $POSTGRES_USER $1 || echo "Could not drop $1, continuing"
+createuser -U $POSTGRES_USER vao_reader || echo "Could not create vao_reader, continuing"
 createuser -U $POSTGRES_USER $1 || echo "Could not create $1, continuing"
 createuser -U $POSTGRES_USER $1_read || echo "Could not create $1, continuing"
 SECONDS=0
