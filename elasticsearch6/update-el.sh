@@ -2,7 +2,7 @@
 set -eu
 
 # Do some variables
-ADMIN_HOST=admin.datapunt.amsterdam.nl
+ADMIN_HOST=admin.data.amsterdam.nl
 DATATYPE=$1
 TEMPDIR=/tmp/${DATATYPE}
 ELFILE=$1.gz
