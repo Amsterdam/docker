@@ -8,6 +8,17 @@ Deze images zijn direct gebaseerd op de officiële images, maar hebben een aanta
 Gebruik
 =======
 
+Bouwen van deze images
+----------------------
+
+We hebben een interne parametrized Jenkins job die de volgende parameters toestaat:
+
+- `DOCKER_NAME`: naam van de map, die matched met the docker-image.
+- `DOCKER_TAG`: specifieke tag die gebouwd moet worden, er wordt dan een `Dockerfile.{tag}` gezocht.
+
+Het docker-compose bestand wordt niet gebruikt om de images te builden.
+
+
 Voor import processen op de datapunt infra:
 ------------------------------------------
 
