@@ -5,9 +5,6 @@ MAINTAINER datapunt@amsterdam.nl
 ENV PYTHONUNBUFFERED 1 \
     PIP_NO_CACHE_DIR=off
 
-COPY apt/stable.pref /etc/apt/preferences.d/
-COPY apt/stable.list /etc/apt/preferences.d/
-
 WORKDIR /app
 RUN apt-get update \
  && apt-get dist-upgrade -y \
