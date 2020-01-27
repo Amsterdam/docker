@@ -23,10 +23,15 @@ RUN apt-get update \
         libspatialite7 \
         libfreexl1 \
         libgeotiff2 \
+        libwebp-dev \
         proj-bin \
+        mime-support \
+        gettext \
  && rm -rf /var/lib/apt/lists/* /var/cache/debconf/*-old \
  && pip install --upgrade pip \
  && pip install uwsgi \
+ && echo "font/woff2    woff2" >> /etc/mime.types \
+ && echo "image/webp    webp"  >> /etc/mime.types \
  && mkdir /usr/local/share/ca-certificates/extras
 
 COPY adp_rootca.crt /usr/local/share/ca-certificates/extras/
