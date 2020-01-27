@@ -24,6 +24,16 @@ services:
   python:
     build: python
 
+  python3.7-buster:
+    build:
+      context: python/
+      dockerfile: Dockerfile.3.7-buster
+
+  python3.7-slim-buster:
+    build:
+      context: python/
+      dockerfile: Dockerfile.3.7-slim-buster
+
   python3.8-buster:
     build:
       context: python/

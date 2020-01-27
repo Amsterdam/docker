@@ -1,0 +1,34 @@
+FROM python:3.7.6-slim-buster
+
+MAINTAINER datapunt@amsterdam.nl
+
+ENV PYTHONUNBUFFERED 1 \
+    PIP_NO_CACHE_DIR=off
+
+WORKDIR /app
+RUN apt-get update \
+ && apt-get dist-upgrade -y \
+ && apt-get autoremove -y \
+ && apt-get install -y \
+        unzip \
+        wget \
+        dnsutils \
+        vim-tiny \
+        net-tools \
+        netcat \
+        libgeos-3.7 \
+        gdal-bin \
+        postgresql-client-11 \
+        libgdal20 \
+        libspatialite7 \
+        libfreexl1 \
+        libgeotiff2 \
+        proj-bin \
+ && rm -rf /var/lib/apt/lists/* /var/cache/debconf/*-old \
+ && pip install --upgrade pip \
+ && mkdir /usr/local/share/ca-certificates/extras
+
+COPY adp_rootca.crt /usr/local/share/ca-certificates/extras/
+RUN chmod 644 /usr/local/share/ca-certificates/extras/adp_rootca.crt \
+ && update-ca-certificates \
+ && useradd --user-group --system datapunt
