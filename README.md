@@ -1,8 +1,8 @@
 Docker
 ======
 
-Images specifiek voor Datapunt development. 
-Deze images zijn direct gebaseerd op de officiële images, maar hebben een aantal hulp-scriptjes om alles wat makkelijker te maken. 
+Images specifiek voor Datapunt development.
+Deze images zijn direct gebaseerd op de officiële images, maar hebben een aantal hulp-scriptjes om alles wat makkelijker te maken.
 
 
 Gebruik
@@ -34,17 +34,20 @@ Voor lokale ontwikkelaars:
 -------------------------
 
 Binnen de projecten (of met deze Docker) kan je lokaal een actuele Acceptatie database of Elastic index inladen.
-Zorg dat als je lokaal de docker-compose gebruikt dat je private key deze locatie heeft: 
 
-    ~/.ssh/datapunt.key
-    
-Zo kan je dan de database of elastic updaten:    
 
+Database backup inladen
+-------------------------
 ```
-docker-compose run postgres update-db.sh <database> <username>
+docker-compose run postgres update-db.sh <database>
 ```
 
 of
+Elasticsearch backup inladen
+----------------------------
+Zorg dat als je lokaal de docker-compose gebruikt dat je private key deze locatie heeft:
+
+    ~/.ssh/datapunt.key
 
 ```
 docker-compose run elasticsearch6 update-el.sh <indexnaam> <username>
