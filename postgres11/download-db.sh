@@ -2,16 +2,18 @@
 set -eu
 set -x
 
-cd /tmp
-rm -f $1
+TARGET_FILE="/tmp/$1_latest.gz"
 
 ENVIRONMENT=${ENVIRONMENT:-acceptance}
-if [ "${ENVIRONMENT}" = "production" ]; then
-        echo "Directly downloading production databases is no longer possible"
+DOWNLOAD_URL="https://admin.data.amsterdam.nl/postgres/${1}_latest.gz"
+
+if [[ "${ENVIRONMENT}" = "production" ]]; then
+        echo "Directly downloading production backup is only possible from the CICD pipelines"
+        DOWNLOAD_URL="https://admin.data.amsterdam.nl/postgres_prod/${1}_latest.gz"
 fi
 
-if [ ! -f $1_latest.gz ]; then
+if [[ ! -f "${TARGET_FILE}" ]]; then
     echo "$1_latest.gz file does not exist, downloading backup"
 
-    wget -nc https://admin.data.amsterdam.nl/postgres/$1_latest.gz
+    wget -O "${TARGET_FILE}" -nc "${DOWNLOAD_URL}"
 fi
