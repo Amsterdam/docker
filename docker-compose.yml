@@ -1,5 +1,7 @@
 version: '3.2'
 
+
+
 services:
   elasticsearch6:
     build: elasticsearch6
@@ -18,8 +20,8 @@ services:
 
   postgres11:
     build: postgres11
-    volumes:
-      - "~/.ssh/datapunt.key:/root/.ssh/datapunt.key"
+    extra_hosts:
+      admin.data.amsterdam.nl: 10.243.16.4
 
   python:
     build: python
