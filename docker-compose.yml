@@ -20,8 +20,6 @@ services:
 
   postgres11:
     build: postgres11
-    extra_hosts:
-      admin.data.amsterdam.nl: 10.243.16.4
 
   python:
     build: python
