@@ -1,4 +1,4 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.1
+FROM docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.3
 MAINTAINER datapunt@amsterdam.nl
 
 # Allow graceful waiting for ports and easier editing
