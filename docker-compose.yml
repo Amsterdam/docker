@@ -10,6 +10,9 @@ services:
       - "9200:9200"
       - "9300:9300"
 
+  elasticsearch7:
+    build: elasticsearch7
+
   nginx_proxy:
     build: nginx_objectstore_proxy
 
