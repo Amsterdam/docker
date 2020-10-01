@@ -17,4 +17,4 @@ RUN apt-get update \
     && pip install --upgrade pip \
     && chmod -R 644 /usr/local/share/ca-certificates/extras/ \
     && update-ca-certificates \
-    i&& useradd --user-group --system datapunt
+    && useradd --user-group --system datapunt
