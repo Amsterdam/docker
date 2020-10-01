@@ -60,7 +60,7 @@ docker-compose run elasticsearch6 clean-el.sh
 docker-compose run elasticsearch6 update-el.sh <indexnaam> <username>
 ```
 
-*LET OOK OP: de mogelijkheid meerdere index-namen mee te geven is komen te vervallen.*
+*LET OOK OP: de mogelijkheid meerdere index-namen mee te geven is komen te vervallent.*
 
 ---
 
