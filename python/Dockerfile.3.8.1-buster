@@ -2,7 +2,7 @@ FROM python:3.8.1-buster
 
 MAINTAINER datapunt@amsterdam.nl
 
-ENV PYTHONUNBUFFERED 1 \
+ENV PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=off
 
 WORKDIR /app
