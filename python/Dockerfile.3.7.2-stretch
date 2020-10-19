@@ -2,7 +2,7 @@ FROM python:3.7.2-stretch
 
 MAINTAINER datapunt@amsterdam.nl
 
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED=1
 
 COPY apt/stable.pref /etc/apt/preferences.d/
 COPY apt/stable.list /etc/apt/preferences.d/
