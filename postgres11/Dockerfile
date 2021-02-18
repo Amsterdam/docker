@@ -12,6 +12,9 @@ RUN echo 'checkpoint_completion_target = 0.9' >> "/usr/share/postgresql/$PG_MAJO
 RUN echo 'fsync = off' >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
 RUN echo 'synchronous_commit = off' >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
 RUN echo 'full_page_writes = off' >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
+RUN echo 'ssl = on' >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
+RUN echo "ssl_cert_file = '/etc/ssl/certs/ssl-cert-snakeoil.pem'" >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
+RUN echo "ssl_key_file = '/etc/ssl/private/ssl-cert-snakeoil.key'" >> "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample"
 
 RUN mkdir ~/.ssh
 RUN ssh-keyscan admin.data.amsterdam.nl >> ~/.ssh/known_hosts
