@@ -1,4 +1,4 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.21
+FROM docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.12
 MAINTAINER datapunt@amsterdam.nl
 
 # Allow graceful waiting for ports and easier editing
@@ -8,5 +8,3 @@ RUN yum install -y openssh-clients
 COPY elasticsearch.yml /usr/share/elasticsearch/config/
 COPY logging.yml /usr/share/elasticsearch/config/
 COPY *.sh /bin/
-
-
