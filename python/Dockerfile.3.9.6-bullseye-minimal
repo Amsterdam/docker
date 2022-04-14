@@ -10,7 +10,7 @@ WORKDIR /app
 RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get install --no-install-recommends -y \
-           postgresql-client-11 \
+           postgresql-client-13 \
     && rm -rf /var/lib/apt/lists/* /var/cache/debconf/*-old \
     && pip install --upgrade pip \
     && mkdir /usr/local/share/ca-certificates/extras
