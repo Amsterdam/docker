@@ -22,11 +22,11 @@ RUN apt-get update \
         netcat \
         libgeos-dev \
         gdal-bin \
-        postgresql-client-11 \
-        libgdal20 \
+        postgresql-client-13 \
+        libgdal28 \
         libspatialite7 \
         libfreexl1 \
-        libgeotiff2 \
+        libgeotiff5 \
         libwebp-dev \
         proj-bin \
         mime-support \
