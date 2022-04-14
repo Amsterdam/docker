@@ -20,7 +20,7 @@ RUN apt-get update \
         vim-tiny \
         net-tools \
         netcat \
-        libgeos-3.7 \
+        libgeos-dev \
         gdal-bin \
         postgresql-client-13 \
         libgdal28 \
