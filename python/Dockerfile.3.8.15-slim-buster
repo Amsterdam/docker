@@ -1,0 +1,45 @@
+FROM python:3.8.15-slim-buster
+
+MAINTAINER datapunt@amsterdam.nl
+
+ENV PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=off \
+    REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
+WORKDIR /app
+
+COPY ca/* /usr/local/share/ca-certificates/extras/
+
+RUN apt-get update \
+ && apt-get dist-upgrade -y \
+ && apt-get autoremove -y \
+ && apt-get install --no-install-recommends -y \
+        unzip \
+        wget \
+        dnsutils \
+        vim-tiny \
+        net-tools \
+        netcat \
+        libgeos-3.7 \
+        gdal-bin \
+        postgresql-client-11 \
+        libgdal20 \
+        libspatialite7 \
+        libfreexl1 \
+        libgeotiff2 \
+        libwebp6 \
+        proj-bin \
+        mime-support \
+        gettext \
+        libwebpmux3 \
+        libwebpdemux2 \
+        libxml2 \
+        libfreetype6 \
+        libtiff5 \
+ && rm -rf /var/lib/apt/lists/* /var/cache/debconf/*-old \
+ && pip install --upgrade pip \
+ && echo "font/woff2    woff2" >> /etc/mime.types \
+ && echo "image/webp    webp"  >> /etc/mime.types \
+ && chmod -R 644 /usr/local/share/ca-certificates/extras/ \
+ && update-ca-certificates \
+ && useradd --user-group --system datapunt
