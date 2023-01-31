@@ -47,5 +47,10 @@ services:
       context: python/
       dockerfile: Dockerfile.3.8-slim-buster
 
+  python3.10-slim-buster:
+    build:
+      context: python/
+      dockerfile: Dockerfile.3.10-slim-buster
+
   pointcloud:
     build: postgres_pointcloud

@@ -1,0 +1,21 @@
+FROM python:3.10.9-buster
+
+MAINTAINER datapunt@amsterdam.nl
+
+ENV PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=off \
+    REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
+WORKDIR /app
+RUN apt-get update \
+    && apt-get autoremove -y \
+    && apt-get install --no-install-recommends -y \
+           postgresql-client-11 \
+    && rm -rf /var/lib/apt/lists/* /var/cache/debconf/*-old \
+    && pip install --upgrade pip \
+    && mkdir /usr/local/share/ca-certificates/extras
+
+COPY ca/* /usr/local/share/ca-certificates/extras/
+RUN chmod -R 644 /usr/local/share/ca-certificates/extras/ \
+ && update-ca-certificates \
+ && useradd --user-group --system datapunt
